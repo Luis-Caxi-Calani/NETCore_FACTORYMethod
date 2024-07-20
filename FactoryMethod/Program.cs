@@ -1,8 +1,19 @@
+using FactoryMethod.DependencyInjection;
+using FactoryMethod.Enums;
+using FactoryMethod.Transports;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddTransportFactory()
+         .AddTransport<Truck>(TransportType.Road)
+         .AddTransport<Ship>(TransportType.Sea);
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
